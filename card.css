@@ -1,0 +1,70 @@
+/* how to do exact flex-basis - including border widths, etc. not guesswork*/
+/*fix smaller media queries*/
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color:rgba(122,122,122,0.12);
+}
+
+h1, h2, h3 {
+  font-family:'Roboto Slab', sans-serif;
+  margin:0 0;
+  padding: 0.2rem 0.5rem;
+}
+
+p {
+  font-family:'Benne', serif;
+  padding: 0.2rem 0.5rem;
+}
+
+div.main {
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  max-width:800px;
+  height:auto;
+  background-color:rgba(122,122,122,0.3);
+}
+
+section#cards {
+  height:auto;
+}
+
+.card-gallery {
+  padding:2% 0%;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.card {
+  margin:2% 1%;
+  height:18rem;
+  flex-basis: 29%;
+  border: 0.1rem solid #7a77d1;
+  border-radius:7%;
+  background-color:#e8e6e4;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.card > div { /*card sub-divs, titlebox & contentbox*/ 
+    padding: 2% 1%;
+    border-top-left-radius:7%;
+    border-top-right-radius:7%;
+}
+
+.titlebox {
+    flex-basis:62%;
+    background-color:#7a77d1;
+}
+
+.contentbox {
+    flex-basis:38%;
+}
