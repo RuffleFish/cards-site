@@ -1,22 +1,38 @@
 /* how to do exact flex-basis - including border widths, etc. not guesswork*/
 /*fix smaller media queries*/
+/* * {
+  outline: 1px solid purple;
+  outline-offset: -1px;
+} */
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
 
 html, body {
     margin: 0;
     padding: 0;
     background-color:rgba(122,122,122,0.12);
-    color:rgba(3,89,122,1);
+    color:rgba(27,27,27,1);
 }
 
 h1, h2, h3 {
-  font-family:'Roboto Slab', sans-serif;
+  font-family:'Roboto Slab', serif;
   margin:0 0;
   padding: 0.2rem 0.5rem;
 }
 
 p {
-  font-family:'Benne', serif;
+  font-family:'Benne', sans-serif;
   padding: 0.2rem 0.5rem;
+  margin: 3% 3%;
+  line-height:1.2;
+  position: absolute;
 }
 
 div.main {
@@ -24,7 +40,7 @@ div.main {
   padding: 1rem 2rem;
   max-width:800px;
   height:auto;
-  background-color:rgba(122,122,122,0.3);
+  background: linear-gradient(360deg, #7a77d1, #558cdd, #349ede, #2eadd9, #4ab9d0, #6dc4c7, #8fcdc2, #aed5c2);}
 }
 
 section#cards {
@@ -42,15 +58,18 @@ section#cards {
 }
 
 .card {
+  position: relative; /* need to set this so blobs can have position: absolute */
   margin:2% 1%;
   height:18rem;
   flex-basis: 29%;
   border: 0rem solid #7a77d1;
   border-radius:4%;
-  background-color:rgba(159,150,255, 0.2); /*e8e6e4 159,250,155*/
+   /*e8e6e4 159,250,155*/
 
   box-shadow: rgba(122,122,122, 0.42) 2px 4px 7px;
   transition: all .3s ease-in-out;
+  background-color:rgba(244,255,244,1);
+
 }
 
 .card:hover {
@@ -59,12 +78,11 @@ section#cards {
 }
 
 .flex-column {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .card > div { /*card sub-divs, titlebox & contentbox*/
-    padding: 2% 1%;
     border-top-left-radius:4%; /*how to fix this?*/
     border-top-right-radius:4%;
 }
@@ -72,8 +90,85 @@ section#cards {
 .titlebox {
     flex-basis:62%;
     background-color:#7a77d1;
+    position:relative;
+}
+
+.card:hover .contentbox {
+    flex-basis:62%;
 }
 
 .contentbox {
+    flex-basis:38%; /*flex-basis:calc(38% + 10px);*/
+    position:relative;
+}
+
+.card:hover .contentbox {
     flex-basis:38%;
+}
+
+.contentbox::before {
+  margin: 0 0;
+  padding: 0 0;
+  content: " ";
+  display: block;
+  position: relative;
+  left: 0%;      /*fix me!!!*/
+  top: -10px;     /*fix me!!!*/
+  width: 100%; /*fix me!!!*/
+  height: 10px;
+  background-color:rgba(244,255,244,1); /* hla color?*/
+  border-top-left-radius: 100%;
+  border-top-right-radius: 100%;
+  transition: all 0.1s;
+  transition-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1);
+}
+
+.card:hover .contentbox::before {
+  top: -14px;
+  height:14px;
+}
+
+.titlebox h3 {
+  position: relative;
+  margin: 3% 3%;
+}
+
+svg.blob {
+  position: absolute;
+  max-width: 125px;
+  transition: all 0.1s;
+  transition-timing-function: cubic-bezier(0.1, 0.7, 1.0, 0.1);
+  /* dont need to use width. viewbox. https://css-tricks.com/scale-svg/ */
+}
+
+svg.blob path {
+  fill:rgba(255,255,255,0.24);
+}
+
+svg.blob.one {
+  left:-9%;
+}
+
+svg.blob.two {
+  left:24%;
+}
+
+svg.blob.three {
+  left:62%;
+}
+
+.card:hover svg.blob  {
+  transform: rotate(27deg) scale(1.2);
+}
+
+.card:hover svg.blob.one {
+  transform: translate3d(1rem, 1.4rem, 1rem);
+}
+
+.card:hover svg.blob.two {
+  transform: translate3d(1rem, 2.7rem, 3rem);
+}
+
+.card:hover svg.blob.three {
+  transform: translate3d(0.5rem, 2.4rem, -1rem);
 }
