@@ -61,6 +61,7 @@ section#cards {
   position: relative; /* need to set this so blobs can have position: absolute */
   margin:2% 1%;
   height:18rem;
+  min-width:200px;
   flex-basis: 29%;
   border: 0rem solid #7a77d1;
   border-radius:4%;
@@ -69,7 +70,6 @@ section#cards {
   box-shadow: rgba(122,122,122, 0.42) 2px 4px 7px;
   transition: all .3s ease-in-out;
   background-color:rgba(244,255,244,1);
-
 }
 
 .card:hover {
@@ -107,14 +107,14 @@ section#cards {
 }
 
 .contentbox::before {
+  position: absolute; /* so it doesn't push other stuff */
   margin: 0 0;
   padding: 0 0;
   content: " ";
   display: block;
-  position: relative;
-  left: 0%;      /*fix me!!!*/
-  top: -10px;     /*fix me!!!*/
-  width: 100%; /*fix me!!!*/
+  left: 0%;
+  top: -10px;
+  width: 100%;
   height: 10px;
   background-color:rgba(244,255,244,1); /* hla color?*/
   border-top-left-radius: 100%;
@@ -171,4 +171,31 @@ svg.blob.three {
 
 .card:hover svg.blob.three {
   transform: translate3d(0.5rem, 2.4rem, -1rem);
+}
+
+@media screen and (max-width: 800px) {
+
+  .card {
+    margin:2% 2%;
+    flex-basis: 200px;
+  }
+
+}
+
+@media screen and (max-width: 520px) {
+
+  .card {
+    margin:4% 2%;
+    flex-basis: 200px;
+  }
+
+}
+
+@media screen and (max-width: 400px) {
+
+  .card {
+    margin:6% 2%;
+    flex-basis: 200px;
+  }
+
 }
